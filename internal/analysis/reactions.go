@@ -1,6 +1,6 @@
 package analysis
 
-import "sofiasoft/src/internal/domain"
+import "sofiasoft/internal/domain"
 
 func TotalReactions(reactions []domain.Reaction) int {
 	total := 0

@@ -1,6 +1,6 @@
 package mock
 
-import "sofiasoft/src/internal/domain"
+import "sofiasoft/internal/domain"
 
 type Classifier struct{}
 

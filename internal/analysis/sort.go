@@ -1,7 +1,7 @@
 package analysis
 
 import (
-	"sofiasoft/src/internal/domain"
+	"sofiasoft/internal/domain"
 	"sort"
 )
 

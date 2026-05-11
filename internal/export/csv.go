@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"sofiasoft/src/internal/domain"
+	"sofiasoft/internal/domain"
 )
 
 func WriteAnalyzedPostsCSV(filename string, posts []domain.AnalyzedPost) error {
@@ -25,6 +25,8 @@ func WriteAnalyzedPostsCSV(filename string, posts []domain.AnalyzedPost) error {
 		"text",
 		"views",
 		"total_reactions",
+		"dominant_emoji",
+		"reaction_emotion",
 		"comments",
 		"forwards",
 		"err",
@@ -48,6 +50,8 @@ func WriteAnalyzedPostsCSV(filename string, posts []domain.AnalyzedPost) error {
 			post.Post.Text,
 			strconv.Itoa(post.Post.Views),
 			strconv.Itoa(post.TotalReactions),
+			post.ReactionEmotion.DominantEmoji,
+			post.ReactionEmotion.DominantEmotion,
 			strconv.Itoa(post.Post.CommentsCount),
 			strconv.Itoa(post.Post.Forwards),
 			strconv.FormatFloat(post.ERR, 'f', 2, 64),

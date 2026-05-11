@@ -1,6 +1,6 @@
 package main
 
-import "sofiasoft/src/internal/app"
+import "sofiasoft/internal/app"
 
 func main() {
 	app.Run()

@@ -1,6 +1,6 @@
 package emotion
 
-import "sofiasoft/src/internal/domain"
+import "sofiasoft/internal/domain"
 
 type Classifier interface {
 	Classify(text string) domain.EmotionResult

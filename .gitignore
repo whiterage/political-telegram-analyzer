@@ -19,3 +19,4 @@ out_*.csv
 .DS_Store
 ЕрмолаеваСС_НИР_эмпирика.docx
 out_posts.csv
+posts.json
