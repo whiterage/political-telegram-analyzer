@@ -1,3 +1,4 @@
 input_file: "posts.json"
 output_file: "out_posts.csv"
+summary_output_file: "out_summary.csv"
 top_limit: 2

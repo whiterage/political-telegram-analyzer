@@ -3,6 +3,7 @@ package app
 import (
 	"fmt"
 	"sofiasoft/internal/emotion/rulebased"
+	"sofiasoft/internal/summary"
 
 	"sofiasoft/internal/analysis"
 	"sofiasoft/internal/config"
@@ -37,6 +38,15 @@ func Run() {
 	}
 
 	fmt.Printf("CSV exported: %s\n", cfg.OutputFile)
+
+	summaries := summary.BuildEmotionSummary(topPosts)
+
+	if err := export.WriteEmotionSummaryCSV(cfg.SummaryOutputFile, summaries); err != nil {
+		fmt.Printf("failed to write summary csv: %v\n", err)
+		return
+	}
+
+	fmt.Printf("Summary CSV exported: %s\n", cfg.SummaryOutputFile)
 
 	for _, post := range topPosts {
 		fmt.Println("----------")
