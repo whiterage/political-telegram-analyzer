@@ -8,6 +8,7 @@ import (
 	"sofiasoft/internal/domain"
 	"sofiasoft/internal/emotion/rulebased"
 	"sofiasoft/internal/export"
+	"sofiasoft/internal/filter"
 	"sofiasoft/internal/source"
 	jsonsource "sofiasoft/internal/source/json"
 	telegramsource "sofiasoft/internal/source/telegram"
@@ -34,6 +35,11 @@ func (p *Pipeline) Run() error {
 	posts, err := p.loadPosts()
 	if err != nil {
 		return err
+	}
+
+	posts, err = filter.ByDateRange(posts, p.cfg.DateFrom, p.cfg.DateTo)
+	if err != nil {
+		return fmt.Errorf("filter posts by date range: %w", err)
 	}
 
 	classifier := rulebased.NewClassifier()
