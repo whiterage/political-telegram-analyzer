@@ -1,6 +1,20 @@
 source: "json"
+
 input_file: "posts.json"
 output_file: "out_posts.csv"
 summary_output_file: "out_summary.csv"
 channel_summary_output_file: "out_channel_summary.csv"
-top_limit: 6
+
+top_limit: 2
+
+telegram:
+  api_id: 0
+  api_hash: ""
+  session_file: "telegram.session"
+  channels:
+    - username: "test_channel"
+      name: "Тестовый канал"
+    - username: "news24"
+      name: "Новости 24"
+    - username: "polit_diary"
+      name: "Политический дневник"
