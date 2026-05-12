@@ -2,10 +2,15 @@
   {
     "id": 1,
     "channel_name": "Тестовый канал",
+    "channel_username": "test_channel",
+    "url": "https://t.me/test_channel/1",
     "text": "Они снова врут. Это угроза для всех. Не молчи!",
+    "published_at": "2026-05-01T12:00:00+03:00",
     "views": 10000,
     "forwards": 120,
     "comments_count": 80,
+    "has_media": false,
+    "media_type": "",
     "reactions": [
       { "emoji": "😡", "count": 500 },
       { "emoji": "🔥", "count": 300 },
@@ -15,10 +20,15 @@
   {
     "id": 2,
     "channel_name": "Тестовый канал",
+    "channel_username": "test_channel",
+    "url": "https://t.me/test_channel/2",
     "text": "Наши герои снова добились победы. Спасибо всем, кто поддерживает!",
+    "published_at": "2026-05-02T15:30:00+03:00",
     "views": 20000,
     "forwards": 300,
     "comments_count": 150,
+    "has_media": true,
+    "media_type": "photo",
     "reactions": [
       { "emoji": "🔥", "count": 1200 },
       { "emoji": "👍", "count": 900 },
@@ -28,10 +38,15 @@
   {
     "id": 3,
     "channel_name": "Новости 24",
+    "channel_username": "news24",
+    "url": "https://t.me/news24/3",
     "text": "Эксперты предупреждают: ситуация становится опасной, возможна новая атака.",
+    "published_at": "2026-05-03T09:15:00+03:00",
     "views": 15000,
     "forwards": 250,
     "comments_count": 120,
+    "has_media": true,
+    "media_type": "photo",
     "reactions": [
       { "emoji": "😱", "count": 700 },
       { "emoji": "🤯", "count": 300 },
@@ -41,10 +56,15 @@
   {
     "id": 4,
     "channel_name": "Новости 24",
+    "channel_username": "news24",
+    "url": "https://t.me/news24/4",
     "text": "После публикации доклада пользователи назвали происходящее клоунадой.",
+    "published_at": "2026-05-04T18:45:00+03:00",
     "views": 8000,
     "forwards": 90,
     "comments_count": 60,
+    "has_media": false,
+    "media_type": "",
     "reactions": [
       { "emoji": "🤡", "count": 600 },
       { "emoji": "💩", "count": 250 },
@@ -54,10 +74,15 @@
   {
     "id": 5,
     "channel_name": "Политический дневник",
+    "channel_username": "polit_diary",
+    "url": "https://t.me/polit_diary/5",
     "text": "Сегодня скорбим по погибшим. Эта боль останется с нами надолго.",
+    "published_at": "2026-05-05T21:00:00+03:00",
     "views": 12000,
     "forwards": 180,
     "comments_count": 140,
+    "has_media": true,
+    "media_type": "video",
     "reactions": [
       { "emoji": "😢", "count": 800 },
       { "emoji": "😭", "count": 500 },
@@ -67,10 +92,15 @@
   {
     "id": 6,
     "channel_name": "Политический дневник",
+    "channel_username": "polit_diary",
+    "url": "https://t.me/polit_diary/6",
     "text": "Опубликован подробный аналитический разбор ситуации без эмоциональных оценок.",
+    "published_at": "2026-05-06T10:20:00+03:00",
     "views": 6000,
     "forwards": 40,
     "comments_count": 30,
+    "has_media": false,
+    "media_type": "",
     "reactions": [
       { "emoji": "👍", "count": 150 },
       { "emoji": "🤡", "count": 90 }
