@@ -157,7 +157,6 @@ func (p *Pipeline) newSource() (source.Source, error) {
 	switch p.cfg.Source {
 	case "json":
 		return jsonsource.New(p.cfg.InputFile), nil
-
 	case "telegram":
 		return telegramsource.New(p.cfg.Telegram, p.cfg.Channels), nil
 

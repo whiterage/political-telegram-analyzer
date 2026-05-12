@@ -20,3 +20,6 @@ out_*.csv
 *.docx
 # Local Go cache
 .gocache/
+# Telegram local session
+telegram.session
+*.session
