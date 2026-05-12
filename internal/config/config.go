@@ -3,14 +3,15 @@ package config
 import "errors"
 
 type Config struct {
-	InputFile                string          `yaml:"input_file"`
-	OutputFile               string          `yaml:"output_file"`
-	SummaryOutputFile        string          `yaml:"summary_output_file"`
-	TopLimit                 int             `yaml:"top_limit"`
-	ChannelSummaryOutputFile string          `yaml:"channel_summary_output_file"`
-	Source                   string          `yaml:"source"`
-	Channels                 []ChannelConfig `yaml:"channels"`
-	Telegram                 TelegramConfig  `yaml:"telegram"`
+	InputFile                     string          `yaml:"input_file"`
+	OutputFile                    string          `yaml:"output_file"`
+	SummaryOutputFile             string          `yaml:"summary_output_file"`
+	TopLimit                      int             `yaml:"top_limit"`
+	ChannelSummaryOutputFile      string          `yaml:"channel_summary_output_file"`
+	ChannelGroupSummaryOutputFile string          `yaml:"channel_group_summary_output_file"`
+	Source                        string          `yaml:"source"`
+	Channels                      []ChannelConfig `yaml:"channels"`
+	Telegram                      TelegramConfig  `yaml:"telegram"`
 }
 
 type TelegramConfig struct {
@@ -41,6 +42,9 @@ func (c Config) Validate() error {
 	}
 	if c.ChannelSummaryOutputFile == "" {
 		return errors.New("channel_summary_output_file is required")
+	}
+	if c.ChannelGroupSummaryOutputFile == "" {
+		return errors.New("channel_group_summary_output_file is required")
 	}
 	if c.Source == "" {
 		return errors.New("source is required")

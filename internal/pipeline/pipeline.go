@@ -68,6 +68,21 @@ func (p *Pipeline) Run() error {
 		p.cfg.ChannelSummaryOutputFile,
 	)
 
+	channelGroupSummaries := summary.BuildChannelGroupSummary(topPosts)
+
+	if err := export.WriteChannelGroupSummaryCSV(
+		p.cfg.ChannelGroupSummaryOutputFile,
+		channelGroupSummaries,
+	); err != nil {
+		return fmt.Errorf("write channel group summary csv: %w", err)
+	}
+
+	p.logger.Info(
+		"channel group summary csv exported",
+		"file",
+		p.cfg.ChannelGroupSummaryOutputFile,
+	)
+
 	p.logTopPosts(topPosts)
 
 	return nil
