@@ -39,9 +39,7 @@ func (p *Pipeline) Run() error {
 
 	analyzedPosts := analysis.AnalyzePosts(posts, classifier)
 
-	analysis.SortByERR(analyzedPosts)
-
-	topPosts := analysis.TopPosts(analyzedPosts, p.cfg.TopLimit)
+	topPosts := analysis.TopPostsByChannel(analyzedPosts, p.cfg.TopLimit)
 
 	if err := export.WriteAnalyzedPostsCSV(p.cfg.OutputFile, topPosts); err != nil {
 		return fmt.Errorf("write analyzed posts csv: %w", err)

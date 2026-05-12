@@ -1,0 +1,79 @@
+[
+  {
+    "id": 1,
+    "channel_name": "Тестовый канал",
+    "text": "Они снова врут. Это угроза для всех. Не молчи!",
+    "views": 10000,
+    "forwards": 120,
+    "comments_count": 80,
+    "reactions": [
+      { "emoji": "😡", "count": 500 },
+      { "emoji": "🔥", "count": 300 },
+      { "emoji": "👍", "count": 200 }
+    ]
+  },
+  {
+    "id": 2,
+    "channel_name": "Тестовый канал",
+    "text": "Наши герои снова добились победы. Спасибо всем, кто поддерживает!",
+    "views": 20000,
+    "forwards": 300,
+    "comments_count": 150,
+    "reactions": [
+      { "emoji": "🔥", "count": 1200 },
+      { "emoji": "👍", "count": 900 },
+      { "emoji": "❤️", "count": 400 }
+    ]
+  },
+  {
+    "id": 3,
+    "channel_name": "Новости 24",
+    "text": "Эксперты предупреждают: ситуация становится опасной, возможна новая атака.",
+    "views": 15000,
+    "forwards": 250,
+    "comments_count": 120,
+    "reactions": [
+      { "emoji": "😱", "count": 700 },
+      { "emoji": "🤯", "count": 300 },
+      { "emoji": "😡", "count": 200 }
+    ]
+  },
+  {
+    "id": 4,
+    "channel_name": "Новости 24",
+    "text": "После публикации доклада пользователи назвали происходящее клоунадой.",
+    "views": 8000,
+    "forwards": 90,
+    "comments_count": 60,
+    "reactions": [
+      { "emoji": "🤡", "count": 600 },
+      { "emoji": "💩", "count": 250 },
+      { "emoji": "🤮", "count": 100 }
+    ]
+  },
+  {
+    "id": 5,
+    "channel_name": "Политический дневник",
+    "text": "Сегодня скорбим по погибшим. Эта боль останется с нами надолго.",
+    "views": 12000,
+    "forwards": 180,
+    "comments_count": 140,
+    "reactions": [
+      { "emoji": "😢", "count": 800 },
+      { "emoji": "😭", "count": 500 },
+      { "emoji": "❤️", "count": 300 }
+    ]
+  },
+  {
+    "id": 6,
+    "channel_name": "Политический дневник",
+    "text": "Опубликован подробный аналитический разбор ситуации без эмоциональных оценок.",
+    "views": 6000,
+    "forwards": 40,
+    "comments_count": 30,
+    "reactions": [
+      { "emoji": "👍", "count": 150 },
+      { "emoji": "🤡", "count": 90 }
+    ]
+  }
+]

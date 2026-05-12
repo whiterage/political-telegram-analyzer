@@ -59,6 +59,17 @@ func (c *Classifier) Classify(text string) domain.EmotionResult {
 		}
 	}
 
+	if containsAny(lowerText, []string{"клоунад", "клоун", "цирк", "абсурд"}) {
+		return domain.EmotionResult{
+			Frame:      "ridicule_discreditation",
+			Emotion:    "ridicule",
+			Confidence: 0.70,
+			Method:     "rulebased",
+			Reason:     "Текст содержит лексику высмеивания или дискредитации.",
+			Markers:    findMarkers(lowerText, []string{"клоунад", "клоун", "цирк", "абсурд"}),
+		}
+	}
+
 	return domain.EmotionResult{
 		Frame:      "neutral",
 		Emotion:    "neutral",

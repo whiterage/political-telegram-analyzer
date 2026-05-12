@@ -18,5 +18,8 @@ out_*.csv
 # macOS
 .DS_Store
 *.docx
-*.csv
-*.json
+# Generated output
+out_*.csv
+
+# Local Go cache
+.gocache/
