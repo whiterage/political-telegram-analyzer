@@ -17,6 +17,9 @@ func Load(filename string) (Config, error) {
 	if err := yaml.Unmarshal(data, &cfg); err != nil {
 		return Config{}, err
 	}
+	if err := applyEnvOverrides(&cfg); err != nil {
+		return Config{}, err
+	}
 	if err := cfg.Validate(); err != nil {
 		return Config{}, err
 	}
