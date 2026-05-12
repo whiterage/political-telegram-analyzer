@@ -8,12 +8,14 @@ import (
 )
 
 type Source struct {
-	cfg config.TelegramConfig
+	telegram config.TelegramConfig
+	channels []config.ChannelConfig
 }
 
-func New(cfg config.TelegramConfig) *Source {
+func New(telegram config.TelegramConfig, channels []config.ChannelConfig) *Source {
 	return &Source{
-		cfg: cfg,
+		telegram: telegram,
+		channels: channels,
 	}
 }
 
