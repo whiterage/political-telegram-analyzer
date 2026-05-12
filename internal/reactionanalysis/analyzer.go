@@ -13,9 +13,9 @@ func AnalyzeReactions(reactions []domain.Reaction) domain.ReactionEmotionResult 
 		distribution[reaction.Emoji] += reaction.Count
 		total += reaction.Count
 
-		if reaction.Count > dominantCount {
+		if distribution[reaction.Emoji] > dominantCount {
 			dominantEmoji = reaction.Emoji
-			dominantCount = reaction.Count
+			dominantCount = distribution[reaction.Emoji]
 		}
 	}
 

@@ -1,23 +1,26 @@
 package app
 
 import (
-	"fmt"
+	"log/slog"
+	"os"
 
 	"sofiasoft/internal/config"
 	"sofiasoft/internal/pipeline"
 )
 
 func Run() {
+	logger := slog.New(slog.NewTextHandler(os.Stdout, nil))
+
 	cfg, err := config.Load("config.yaml")
 	if err != nil {
-		fmt.Printf("failed to load config: %v\n", err)
+		logger.Error("failed to load config", "error", err)
 		return
 	}
 
-	p := pipeline.New(cfg)
+	p := pipeline.New(cfg, logger)
 
 	if err := p.Run(); err != nil {
-		fmt.Printf("pipeline failed: %v\n", err)
+		logger.Error("pipeline failed", "error", err)
 		return
 	}
 }
