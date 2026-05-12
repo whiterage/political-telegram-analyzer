@@ -10,6 +10,7 @@ import (
 	"sofiasoft/internal/export"
 	"sofiasoft/internal/source"
 	jsonsource "sofiasoft/internal/source/json"
+	telegramsource "sofiasoft/internal/source/telegram"
 	"sofiasoft/internal/summary"
 )
 
@@ -130,7 +131,7 @@ func (p *Pipeline) newSource() (source.Source, error) {
 		return jsonsource.New(p.cfg.InputFile), nil
 
 	case "telegram":
-		return nil, fmt.Errorf("telegram source is not implemented yet")
+		return telegramsource.New(p.cfg.Telegram), nil
 
 	default:
 		return nil, fmt.Errorf("unsupported source: %s", p.cfg.Source)
