@@ -1,6 +1,10 @@
 package config
 
-import "errors"
+import (
+	"errors"
+	"fmt"
+	"time"
+)
 
 type Config struct {
 	InputFile                     string          `yaml:"input_file"`
@@ -9,6 +13,8 @@ type Config struct {
 	TopLimit                      int             `yaml:"top_limit"`
 	ChannelSummaryOutputFile      string          `yaml:"channel_summary_output_file"`
 	ChannelGroupSummaryOutputFile string          `yaml:"channel_group_summary_output_file"`
+	DateFrom                      string          `yaml:"date_from"`
+	DateTo                        string          `yaml:"date_to"`
 	Source                        string          `yaml:"source"`
 	Channels                      []ChannelConfig `yaml:"channels"`
 	Telegram                      TelegramConfig  `yaml:"telegram"`
@@ -46,11 +52,31 @@ func (c Config) Validate() error {
 	if c.ChannelGroupSummaryOutputFile == "" {
 		return errors.New("channel_group_summary_output_file is required")
 	}
+	if c.DateFrom == "" {
+		return errors.New("date_from is required")
+	}
+	if c.DateTo == "" {
+		return errors.New("date_to is required")
+	}
 	if c.Source == "" {
 		return errors.New("source is required")
 	}
 	if c.Source != "json" && c.Source != "telegram" {
 		return errors.New("source must be either json or telegram")
+	}
+
+	from, err := time.Parse(time.RFC3339, c.DateFrom)
+	if err != nil {
+		return fmt.Errorf("date_from must be RFC3339: %w", err)
+	}
+
+	to, err := time.Parse(time.RFC3339, c.DateTo)
+	if err != nil {
+		return fmt.Errorf("date_to must be RFC3339: %w", err)
+	}
+
+	if !from.Before(to) {
+		return errors.New("date_from must be before date_to")
 	}
 
 	if len(c.Channels) == 0 {
