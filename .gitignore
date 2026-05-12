@@ -17,6 +17,6 @@ out_*.csv
 
 # macOS
 .DS_Store
-ЕрмолаеваСС_НИР_эмпирика.docx
-out_posts.csv
-posts.json
+*.docx
+*.csv
+*.json
