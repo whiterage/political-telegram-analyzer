@@ -158,7 +158,7 @@ func (p *Pipeline) newSource() (source.Source, error) {
 	case "json":
 		return jsonsource.New(p.cfg.InputFile), nil
 	case "telegram":
-		return telegramsource.New(p.cfg.Telegram, p.cfg.Channels), nil
+		return telegramsource.New(p.cfg.Telegram, p.cfg.Channels, p.logger), nil
 
 	default:
 		return nil, fmt.Errorf("unsupported source: %s", p.cfg.Source)

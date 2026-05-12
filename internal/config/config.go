@@ -26,6 +26,7 @@ type TelegramConfig struct {
 	APIID       int    `yaml:"api_id"`
 	APIHash     string `yaml:"api_hash"`
 	SessionFile string `yaml:"session_file"`
+	FetchLimit  int    `yaml:"fetch_limit"`
 }
 
 type ChannelConfig struct {
@@ -122,6 +123,10 @@ func (c Config) Validate() error {
 
 		if c.Telegram.SessionFile == "" {
 			return errors.New("telegram.session_file is required")
+		}
+
+		if c.Telegram.FetchLimit <= 0 {
+			return errors.New("telegram.fetch_limit must be greater than zero")
 		}
 	}
 
