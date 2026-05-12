@@ -13,6 +13,7 @@ import (
 	jsonsource "sofiasoft/internal/source/json"
 	telegramsource "sofiasoft/internal/source/telegram"
 	"sofiasoft/internal/summary"
+	"sofiasoft/internal/validation"
 )
 
 type Pipeline struct {
@@ -43,6 +44,10 @@ func (p *Pipeline) Run() error {
 	}
 
 	posts = filter.ByThresholds(posts, p.cfg.MinViews, p.cfg.MinTotalReactions)
+
+	if err := validation.ValidatePosts(posts); err != nil {
+		return fmt.Errorf("validate posts: %w", err)
+	}
 
 	classifier := rulebased.NewClassifier()
 
