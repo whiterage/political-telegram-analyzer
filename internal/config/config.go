@@ -3,25 +3,27 @@ package config
 import "errors"
 
 type Config struct {
-	InputFile                string         `yaml:"input_file"`
-	OutputFile               string         `yaml:"output_file"`
-	SummaryOutputFile        string         `yaml:"summary_output_file"`
-	TopLimit                 int            `yaml:"top_limit"`
-	ChannelSummaryOutputFile string         `yaml:"channel_summary_output_file"`
-	Source                   string         `yaml:"source"`
-	Telegram                 TelegramConfig `yaml:"telegram"`
+	InputFile                string          `yaml:"input_file"`
+	OutputFile               string          `yaml:"output_file"`
+	SummaryOutputFile        string          `yaml:"summary_output_file"`
+	TopLimit                 int             `yaml:"top_limit"`
+	ChannelSummaryOutputFile string          `yaml:"channel_summary_output_file"`
+	Source                   string          `yaml:"source"`
+	Channels                 []ChannelConfig `yaml:"channels"`
+	Telegram                 TelegramConfig  `yaml:"telegram"`
 }
 
 type TelegramConfig struct {
-	APIID       int             `yaml:"api_id"`
-	APIHash     string          `yaml:"api_hash"`
-	SessionFile string          `yaml:"session_file"`
-	Channels    []ChannelConfig `yaml:"channels"`
+	APIID       int    `yaml:"api_id"`
+	APIHash     string `yaml:"api_hash"`
+	SessionFile string `yaml:"session_file"`
 }
 
 type ChannelConfig struct {
-	Username string `yaml:"username"`
-	Name     string `yaml:"name"`
+	Username  string `yaml:"username"`
+	Name      string `yaml:"name"`
+	Category  string `yaml:"category"`
+	ActorType string `yaml:"actor_type"`
 }
 
 func (c Config) Validate() error {
@@ -46,6 +48,29 @@ func (c Config) Validate() error {
 	if c.Source != "json" && c.Source != "telegram" {
 		return errors.New("source must be either json or telegram")
 	}
+
+	if len(c.Channels) == 0 {
+		return errors.New("channels are required")
+	}
+
+	for _, channel := range c.Channels {
+		if channel.Username == "" {
+			return errors.New("channel username is required")
+		}
+
+		if channel.Name == "" {
+			return errors.New("channel name is required")
+		}
+
+		if channel.Category == "" {
+			return errors.New("channel category is required")
+		}
+
+		if channel.ActorType == "" {
+			return errors.New("channel actor_type is required")
+		}
+	}
+
 	if c.Source == "telegram" {
 		if c.Telegram.APIID == 0 {
 			return errors.New("telegram.api_id is required")
@@ -57,16 +82,6 @@ func (c Config) Validate() error {
 
 		if c.Telegram.SessionFile == "" {
 			return errors.New("telegram.session_file is required")
-		}
-
-		if len(c.Telegram.Channels) == 0 {
-			return errors.New("telegram.channels is required")
-		}
-
-		for _, channel := range c.Telegram.Channels {
-			if channel.Username == "" {
-				return errors.New("telegram channel username is required")
-			}
 		}
 	}
 
