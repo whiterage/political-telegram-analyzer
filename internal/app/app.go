@@ -48,6 +48,15 @@ func Run() {
 
 	fmt.Printf("Summary CSV exported: %s\n", cfg.SummaryOutputFile)
 
+	channelSummaries := summary.BuildChannelSummary(topPosts)
+
+	if err := export.WriteChannelSummaryCSV(cfg.ChannelSummaryOutputFile, channelSummaries); err != nil {
+		fmt.Printf("failed to write channel summary csv: %v\n", err)
+		return
+	}
+
+	fmt.Printf("Channel summary CSV exported: %s\n", cfg.ChannelSummaryOutputFile)
+
 	for _, post := range topPosts {
 		fmt.Println("----------")
 		fmt.Printf("ID: %d\n", post.Post.ID)

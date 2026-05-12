@@ -3,10 +3,11 @@ package config
 import "errors"
 
 type Config struct {
-	InputFile         string `yaml:"input_file"`
-	OutputFile        string `yaml:"output_file"`
-	SummaryOutputFile string `yaml:"summary_output_file"`
-	TopLimit          int    `yaml:"top_limit"`
+	InputFile                string `yaml:"input_file"`
+	OutputFile               string `yaml:"output_file"`
+	SummaryOutputFile        string `yaml:"summary_output_file"`
+	TopLimit                 int    `yaml:"top_limit"`
+	ChannelSummaryOutputFile string `yaml:"channel_summary_output_file"`
 }
 
 func (c Config) Validate() error {
@@ -21,6 +22,9 @@ func (c Config) Validate() error {
 	}
 	if c.SummaryOutputFile == "" {
 		return errors.New("summary_output_file is required")
+	}
+	if c.ChannelSummaryOutputFile == "" {
+		return errors.New("channel_summary_output_file is required")
 	}
 	return nil
 

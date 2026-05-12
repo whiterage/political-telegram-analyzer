@@ -1,6 +1,9 @@
 package summary
 
-import "sofiasoft/internal/domain"
+import (
+	"sofiasoft/internal/domain"
+	"sort"
+)
 
 type EmotionSummary struct {
 	Type       string
@@ -34,6 +37,13 @@ func BuildEmotionSummary(posts []domain.AnalyzedPost) []EmotionSummary {
 			AverageERR: value.TotalERR / float64(value.Count),
 		})
 	}
+
+	sort.Slice(result, func(i, j int) bool {
+		if result[i].Type != result[j].Type {
+			return result[i].Type < result[j].Type
+		}
+		return result[i].AverageERR > result[j].AverageERR
+	})
 
 	return result
 }
