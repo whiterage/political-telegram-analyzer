@@ -7,6 +7,8 @@ channel_summary_output_file: "out_channel_summary.csv"
 channel_group_summary_output_file: "out_channel_group_summary.csv"
 date_from: "2026-05-01T00:00:00+03:00"
 date_to: "2026-05-31T23:59:59+03:00"
+min_views: 1000
+min_total_reactions: 10
 
 top_limit: 2
 

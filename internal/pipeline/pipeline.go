@@ -42,6 +42,8 @@ func (p *Pipeline) Run() error {
 		return fmt.Errorf("filter posts by date range: %w", err)
 	}
 
+	posts = filter.ByThresholds(posts, p.cfg.MinViews, p.cfg.MinTotalReactions)
+
 	classifier := rulebased.NewClassifier()
 
 	analyzedPosts := analysis.AnalyzePosts(posts, classifier)

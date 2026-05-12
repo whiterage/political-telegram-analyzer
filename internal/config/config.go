@@ -15,6 +15,8 @@ type Config struct {
 	ChannelGroupSummaryOutputFile string          `yaml:"channel_group_summary_output_file"`
 	DateFrom                      string          `yaml:"date_from"`
 	DateTo                        string          `yaml:"date_to"`
+	MinViews                      int             `yaml:"min_views"`
+	MinTotalReactions             int             `yaml:"min_total_reactions"`
 	Source                        string          `yaml:"source"`
 	Channels                      []ChannelConfig `yaml:"channels"`
 	Telegram                      TelegramConfig  `yaml:"telegram"`
@@ -77,6 +79,14 @@ func (c Config) Validate() error {
 
 	if !from.Before(to) {
 		return errors.New("date_from must be before date_to")
+	}
+
+	if c.MinViews < 0 {
+		return errors.New("min_views must be greater than or equal to zero")
+	}
+
+	if c.MinTotalReactions < 0 {
+		return errors.New("min_total_reactions must be greater than or equal to zero")
 	}
 
 	if len(c.Channels) == 0 {
