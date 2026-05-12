@@ -22,9 +22,9 @@ func New(cfg config.Config) *Pipeline {
 }
 
 func (p *Pipeline) Run() error {
-	posts, err := input.ReadPostsJSON(p.cfg.InputFile)
+	posts, err := p.loadPosts()
 	if err != nil {
-		return fmt.Errorf("read posts json: %w", err)
+		return err
 	}
 
 	classifier := rulebased.NewClassifier()
@@ -79,5 +79,23 @@ func printTopPosts(posts []domain.AnalyzedPost) {
 		fmt.Printf("Markers: %v\n", post.Emotion.Markers)
 		fmt.Printf("Dominant emoji: %s\n", post.ReactionEmotion.DominantEmoji)
 		fmt.Printf("Reaction emotion: %s\n", post.ReactionEmotion.DominantEmotion)
+	}
+}
+
+func (p *Pipeline) loadPosts() ([]domain.Post, error) {
+	switch p.cfg.Source {
+	case "json":
+		posts, err := input.ReadPostsJSON(p.cfg.InputFile)
+		if err != nil {
+			return nil, fmt.Errorf("read posts json: %w", err)
+		}
+
+		return posts, nil
+
+	case "telegram":
+		return nil, fmt.Errorf("telegram source is not implemented yet")
+
+	default:
+		return nil, fmt.Errorf("unsupported source: %s", p.cfg.Source)
 	}
 }

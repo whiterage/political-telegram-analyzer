@@ -8,6 +8,7 @@ type Config struct {
 	SummaryOutputFile        string `yaml:"summary_output_file"`
 	TopLimit                 int    `yaml:"top_limit"`
 	ChannelSummaryOutputFile string `yaml:"channel_summary_output_file"`
+	Source                   string `yaml:"source"`
 }
 
 func (c Config) Validate() error {
@@ -25,6 +26,13 @@ func (c Config) Validate() error {
 	}
 	if c.ChannelSummaryOutputFile == "" {
 		return errors.New("channel_summary_output_file is required")
+	}
+	if c.Source == "" {
+		return errors.New("source is required")
+	}
+
+	if c.Source != "json" && c.Source != "telegram" {
+		return errors.New("source must be either json or telegram")
 	}
 	return nil
 
